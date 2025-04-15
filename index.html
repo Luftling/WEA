@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rotorblatt Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: white;
+    }
+
+    #container {
+      width: 90vw;
+      height: 80vh;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+
+    #wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+    }
+
+    #viewer {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      user-select: none;
+    }
+
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .marker {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      pointer-events: auto;
+    }
+
+    .marker div {
+      width: 6px;
+      height: 6px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .marker span {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      padding: 2px 4px;
+      border-radius: 3px;
+      margin-left: 4px;
+    }
+
+    .marker button {
+      margin-left: 4px;
+      cursor: pointer;
+    }
+
+    .nav {
+      margin: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    button {
+      padding: 0.4rem 1rem;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Rotorblatt Viewer mit Marker-Funktionen</h2>
+  <div class="nav">
+    <button onclick="prevImage()">Zurück</button>
+    <button onclick="toggleMarkers()">🖊️ Marker anzeigen/verbergen</button>
+    <span id="counter">Bild 1 von 1</span>
+    <button onclick="nextImage()">Weiter</button>
+  </div>
+
+  <div id="container">
+    <div id="wrapper">
+      <img id="viewer" src="" alt="Bild" onwheel="zoom(event)" onclick="addMarker(event)" />
+      <div id="overlay"></div>
+    </div>
+  </div>
+
+  <script src="assets/viewer.js"></script>
+</body>
+</html>
